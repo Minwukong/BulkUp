@@ -1,7 +1,8 @@
-import React from 'react';
 import './App.css';
+import GlobalStyled from './GlobalStyled';
 import MainPage from './pages/MainPage';
 function App() {
+<<<<<<< HEAD
     const isLogin = false;
     <div>
       <Header />
@@ -21,6 +22,14 @@ function App() {
         </Switch>
       )}
     </div>
+=======
+    return (
+        <>
+            <GlobalStyled />
+            <MainPage></MainPage>
+        </>
+    );
+>>>>>>> 90d947ad165bf0fcf627dfa19d69d7f9a7001c61
 }
 
 export default App;
