@@ -1,5 +1,5 @@
 import './App.css';
-import GlobalStyled from './GlobalStyled';
+import GlobalStyled from './styles/GlobalStyled';
 import MainPage from './pages/MainPage';
 function App() {
     return (

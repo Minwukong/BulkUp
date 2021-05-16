@@ -1,10 +1,13 @@
 import React from 'react';
-
+import Header from '../components/common/Header/Header';
 const MainPage = () => {
     return (
-        <div>
-            <img src="./이유.jpg"></img>
-        </div>
+        <>
+            <Header />
+            <div>
+                <img src="./이유.jpg"></img>
+            </div>
+        </>
     );
 };
 
