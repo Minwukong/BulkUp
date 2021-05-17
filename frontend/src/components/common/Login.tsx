@@ -1,64 +1,30 @@
-// import React from "react"
-// import useInput from "../../hooks/useInput"
+import React from 'react';
+import { useForm } from 'react-hook-form';
 
-// const Login = () => {
-//     const [id, onChangeId, setId] = useInput("");
-//     const [pwd, onChangePwd, setPwd] = useInput("");
+export default function App() {
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+    } = useForm();
+    const onSubmit = (data) => console.log(data);
 
-//     const onReset = useCallback(() => {
-//       setId("");
-//       setPwd("");
-//     }, [setId, setPwd]);
+    return (
+        <form onSubmit={handleSubmit(onSubmit)}>
+            <label htmlFor="name">Name</label>
+            <input
+                id="name"
+                {...register('name', { required: true, maxLength: 30 })}
+            />
+            {errors.name && errors.name.type === 'required' && (
+                <span>This is required</span>
+            )}
+            {errors.name && errors.name.type === 'maxLength' && (
+                <span>Max length exceeded</span>
+            )}
+            <input type="submit" />
+        </form>
+    );
+}
 
-//     const onLogin = () => {
-//       if (!id || !pwd) {
-//         alert("모든 값을 정확하게 입력해주세요");
-//         return;
-//       }
-
-//       alert("로그인");
-//       onReset();
-//     };
-
-//     return (
-//       <Container>
-//         <Title>PurpleCode</Title>
-//         <form>
-//           <InputContainer>
-//             <InputItem>
-//               <InputLabel htmlFor="user_id">아이디:</InputLabel>
-//               <InputDiv>
-//                 <MyInput
-//                   id="user_id"
-//                   value={id}
-//                   onChange={onChangeId}
-//                   placeholder="아이디를 입력해주세요"
-//                   required
-//                 />
-//                 <hr />
-//               </InputDiv>
-//             </InputItem>
-//             <InputItem>
-//               <InputLabel htmlFor="user_pwd">비밀번호:</InputLabel>
-//               <InputDiv>
-//                 <MyInput
-//                   id="user_pwd"
-//                   value={pwd}
-//                   onChange={onChangePwd}
-//                   placeholder="비밀번호를 입력해주세요"
-//                   required
-//                 />
-//                 <hr />
-//               </InputDiv>
-//             </InputItem>
-//           </InputContainer>
-//         </form>
-//         <LoginBtn type="submit" value="로그인" onClick={onLogin}/>
-//         <Link to="/signup">
-//           <LoginBtn type="submit" value="회원가입" />
-//         </Link>
-//       </Container>
-//     );
-//   };
-
-//   export default Login;
+// react-hook-form 구조로 metarial ui사용해서 폼 구현합시다
