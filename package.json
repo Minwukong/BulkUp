@@ -1,6 +1,0 @@
-{
-  "dependencies": {
-    "@hookform/resolvers": "^2.5.1",
-    "yup": "^0.32.9"
-  }
-}

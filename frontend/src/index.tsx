@@ -4,6 +4,10 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+export { default as Main } from './pages/MainPage';
+export { default as Auth } from './pages/LoginPage';
+export { default as NotFound } from './pages/NotFound';
+
 ReactDOM.render(
     <React.StrictMode>
         <App />
