@@ -4,9 +4,9 @@ const MainPage = () => {
     return (
         <>
             <Header />
-            <div>
+            {/* <div>
                 <img src="./이유.jpg"></img>
-            </div>
+            </div> */}
         </>
     );
 };
