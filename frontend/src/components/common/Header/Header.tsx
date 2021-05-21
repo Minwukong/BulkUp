@@ -1,4 +1,5 @@
 import { Button, styled, Link } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
 import { MenuOutlined, Close, Person } from '@material-ui/icons';
 import { useEffect, useState } from 'react';
 
@@ -69,9 +70,26 @@ const MyPageBtnIcon = styled(Person)({
 });
 
 const WrapperRoot = styled('div')({
+    position: 'relative',
     background: 'black',
     maxWidth: '100vw',
-    height: 120,
+    height: 200,
+
+    '&:before': {
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        width: '100%',
+        content: `''`,
+        borderTop: '1px solid #4d4d4d',
+    },
+});
+
+const WrapperLeftContent = styled('div')({
+    background: 'black',
+});
+const WarpperRightContent = styled(WrapperLeftContent)({
+    float: 'right',
 });
 
 const Header = () => {
@@ -101,7 +119,7 @@ const Header = () => {
             </RightMenuContent>
             {isMenuOpen && (
                 <WrapperRoot>
-                    <div></div>
+                    <WrapperLeftContent></WrapperLeftContent>
                 </WrapperRoot>
             )}
         </HeaderRoot>
