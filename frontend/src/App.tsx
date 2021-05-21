@@ -1,12 +1,17 @@
-import './App.css';
-import GlobalStyled from './styles/GlobalStyled';
+import React from 'react';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+
 import MainPage from './pages/MainPage';
+import LoginPage from './pages/LoginPage';
+
 function App() {
     return (
-        <>
-            <GlobalStyled />
-            <MainPage></MainPage>
-        </>
+        <Router>
+            <Switch>
+                <Route path="/" component={MainPage} exact />
+                <Route path="/login" component={LoginPage} exact />
+            </Switch>
+        </Router>
     );
 }
 
