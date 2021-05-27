@@ -10,89 +10,77 @@ const menuBtnCommonStyle = {
     minWidth: 40,
     minHeight: 30,
 };
-const menuIconColor = { color: 'white' };
+const mainBGColor = { backgroundColor: 'black' };
+const mainFontColor = { color: 'white' };
 const mouseHoverCommonStyle = {
     color: 'gray',
     textDecoration: 'none',
 };
-
-// Root
-const HeaderRoot = styled('div')({
-    background: 'black',
-    maxWidth: '100vw',
-});
-
-// MenuOpenBtn
-const MenuOpenBtn = styled(Button)({
-    ...menuBtnCommonStyle,
-});
-
-const menuOpenBtnIconStyle = {
-    ...menuIconColor,
-    fontSize: 40,
-    // transition: 'all 0.5s ease-in-out',
-
-    '&:hover': {
-        ...mouseHoverCommonStyle,
+const useStyles = makeStyles({
+    root: {
+        ...mainBGColor,
+        maxWidth: '100vw',
     },
-};
+
+    // 맨 상단 좌측 메뉴
+    leftMenuBtn: {
+        ...mainFontColor,
+        ...menuBtnCommonStyle,
+
+        '&:hover': {
+            ...mouseHoverCommonStyle,
+        },
+    },
+
+    // 맨 상단 우측 메뉴
+    rightMenuRoot: {
+        margin: 5,
+        float: 'right',
+    },
+    rightMenuBtn: {
+        ...mainFontColor,
+        ...menuBtnCommonStyle,
+
+        '&:hover': {
+            ...mouseHoverCommonStyle,
+        },
+    },
+
+    // 메뉴 오픈시 보이는 wrapper
+    wrapperRoot: {
+        ...mainFontColor,
+        ...mainBGColor,
+        position: 'relative',
+        display: 'flex',
+        maxWidth: '100vw',
+        height: 200,
+        justifyContent: 'space-around',
+
+        '&:before': {
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            width: '100%',
+            content: `''`,
+            borderTop: '1px solid #4d4d4d',
+        },
+        '& > .left-root': {},
+        '& > .right-root': {},
+    },
+});
+
 const MenuBtnIcon = styled(MenuOutlined)({
-    ...menuOpenBtnIconStyle,
+    fontSize: 40,
 });
 const MenuCloseBtnIcon = styled(Close)({
-    ...menuOpenBtnIconStyle,
-});
-
-const RightMenuContent = styled('div')({
-    margin: 5,
-    float: 'right',
-});
-
-const LoginBtn = styled(Link)({
-    ...menuIconColor,
-
-    '&:hover': {
-        ...mouseHoverCommonStyle,
-    },
-});
-const LogoutBtn = styled(LoginBtn)({});
-
-const MyPageBtn = styled(Button)({
-    ...menuBtnCommonStyle,
+    fontSize: 40,
 });
 const MyPageBtnIcon = styled(Person)({
-    ...menuIconColor,
     fontSize: 30,
-
-    '&:hover': {
-        ...mouseHoverCommonStyle,
-    },
-});
-
-const WrapperRoot = styled('div')({
-    position: 'relative',
-    background: 'black',
-    maxWidth: '100vw',
-    height: 200,
-
-    '&:before': {
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        width: '100%',
-        content: `''`,
-        borderTop: '1px solid #4d4d4d',
-    },
-});
-
-const WrapperLeftContent = styled('div')({
-    background: 'black',
-});
-const WarpperRightContent = styled(WrapperLeftContent)({
-    float: 'right',
 });
 
 const Header = () => {
+    const classes = useStyles();
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isLogin, setIsLogin] = useState(false);
 
@@ -106,23 +94,42 @@ const Header = () => {
     }
 
     return (
-        <HeaderRoot>
-            <MenuOpenBtn onClick={toggleMenu}>
+        <div className={classes.root}>
+            <Button className={classes.leftMenuBtn} onClick={toggleMenu}>
                 {isMenuOpen ? <MenuCloseBtnIcon /> : <MenuBtnIcon />}
-            </MenuOpenBtn>
-            <RightMenuContent>
-                {!isLogin && <LoginBtn href="/">Login</LoginBtn>}
-                {isLogin && <LogoutBtn href="/">Logout</LogoutBtn>}
-                <MyPageBtn>
+            </Button>
+            <div className={classes.rightMenuRoot}>
+                {!isLogin && (
+                    <Link href="/login" className={classes.rightMenuBtn}>
+                        Login
+                    </Link>
+                )}
+                {isLogin && (
+                    <Link href="/" className={classes.rightMenuBtn}>
+                        Logout
+                    </Link>
+                )}
+                <Button className={classes.rightMenuBtn}>
                     <MyPageBtnIcon />
-                </MyPageBtn>
-            </RightMenuContent>
+                </Button>
+            </div>
             {isMenuOpen && (
-                <WrapperRoot>
-                    <WrapperLeftContent></WrapperLeftContent>
-                </WrapperRoot>
+                <div className={classes.wrapperRoot}>
+                    <div className="left-root">
+                        <ul>
+                            <li>하하</li>
+                            <li>하하</li>
+                        </ul>
+                    </div>
+                    <div className="right-root">
+                        <ul>
+                            <li>하하</li>
+                            <li>하하</li>
+                        </ul>
+                    </div>
+                </div>
             )}
-        </HeaderRoot>
+        </div>
     );
 };
 
